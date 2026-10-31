@@ -1,0 +1,11 @@
+# Materiale storico e di lavoro: resta sul Mac, non va online
+archive/
+_backup_pre_pulizia_2026-10-27/
+_review_repo_cervello_2026-10-16.md
+_stato_chain.md
+
+# Sistema
+.DS_Store
+
+# dati clienti reali: mai pubblicati
+clienti/

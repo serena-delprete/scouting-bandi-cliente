@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study: B-HOP Magazine — Chain Prompt Finanza Agevolata</title>
+<meta property="og:title" content="Case Study: 7 Bandi, 1 Proposta — Consulenza Bandi con AI">
+<meta property="og:description" content="Come una chain di 7 prompt AI ha trasformato documenti grezzi in una proposta progettuale completa. 2 clienti testati, 13 retroazioni applicate.">
+<meta property="og:type" content="article">
+<meta name="author" content="Serena Del Prete">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --accent: #f59e0b;
+    --accent-soft: #f59e0b22;
+    --green: #10b981;
+    --red: #ef4444;
+    --orange: #f97316;
+    --blue: #3b82f6;
+    --text: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --text-dim: #737373;
+    --border: #2a2a2a;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  section {
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+  }
+  section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  section p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-size: 15px;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+  }
+  .metric-card .number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .metric-card .label {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.3;
+  }
+
+  .client-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) { .client-card { grid-template-columns: 1fr; } }
+  .client-card .client-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .client-card .client-type {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .client-card .detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .client-card .detail:last-child { border-bottom: none; }
+  .client-card .detail .key { color: var(--text-dim); }
+  .client-card .detail .val { color: var(--text); font-weight: 500; }
+
+  .funnel { margin: 32px 0; }
+  .funnel-step {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .funnel-bar {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 56px;
+  }
+  .funnel-bar .step-icon { font-size: 20px; margin-right: 12px; flex-shrink: 0; }
+  .funnel-bar .step-label { flex-grow: 1; }
+  .funnel-bar .step-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 16px;
+    flex-shrink: 0;
+  }
+  .funnel-step:nth-child(1) .funnel-bar { background: #f59e0b18; width: 100%; color: var(--accent); }
+  .funnel-step:nth-child(2) .funnel-bar { background: #3b82f618; width: 85%; color: var(--blue); }
+  .funnel-step:nth-child(3) .funnel-bar { background: #10b98118; width: 57%; color: var(--green); }
+  .funnel-step:nth-child(4) .funnel-bar { background: #10b98130; width: 30%; color: var(--green); }
+
+  .chain-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 24px 0;
+  }
+  .chain-node {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+  .chain-node .node-id {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .chain-node .node-name { color: var(--text-muted); font-size: 11px; line-height: 1.3; }
+  .chain-arrow { color: var(--text-dim); font-size: 18px; flex-shrink: 0; }
+
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .results-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .results-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .results-table tr:last-child td { border-bottom: none; }
+  .status {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .status-go { background: #10b98120; color: var(--green); }
+  .status-cond { background: #f59e0b20; color: var(--accent); }
+  .status-block { background: #ef444420; color: var(--red); }
+
+  .insight-box {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .insight-box .insight-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .insight-box p { color: var(--text); font-size: 15px; margin-bottom: 0; }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) { .comparison { grid-template-columns: 1fr; } }
+  .comp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .comp-card.before { border-top: 3px solid var(--red); }
+  .comp-card.after { border-top: 3px solid var(--green); }
+  .comp-card .comp-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .comp-card.before .comp-label { color: var(--red); }
+  .comp-card.after .comp-label { color: var(--green); }
+  .comp-card .comp-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-card .comp-item:last-child { border-bottom: none; }
+  .comp-card .comp-item .k { color: var(--text-dim); }
+  .comp-card .comp-item .v { font-weight: 500; }
+
+  .proposal-preview {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .proposal-preview .pp-header {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .proposal-preview .pp-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .proposal-preview .pp-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .proposal-preview .pp-meta span { font-size: 13px; color: var(--text-dim); }
+  .proposal-preview .pp-meta span strong { color: var(--text-muted); }
+  .proposal-preview .pp-body { color: var(--text-muted); line-height: 1.7; }
+  .proposal-preview .pp-fade {
+    background: linear-gradient(transparent, var(--surface-2));
+    height: 60px;
+    margin-top: -60px;
+    position: relative;
+  }
+
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    margin: 24px 0;
+  }
+  .verdict .verdict-icon { font-size: 48px; margin-bottom: 12px; }
+  .verdict .verdict-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .verdict .verdict-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer p { color: var(--text-dim); font-size: 13px; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  .gatekeeper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 24px 0;
+  }
+  .gatekeeper-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gatekeeper-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .gatekeeper-grid { grid-template-columns: 1fr; } }
+  .gk-item {
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .gk-item .gk-name { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+  .gk-item .gk-reason { font-size: 11px; color: var(--text-dim); line-height: 1.4; }
+  .gk-item .gk-icon { font-size: 24px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="tag">Case Study #1</div>
+    <h1>7 bandi analizzati. 4 fattibili.<br><em>1 proposta redatta.</em></h1>
+    <p class="subtitle">Come una chain di 7 prompt AI ha trasformato documenti grezzi del cliente in una proposta progettuale completa &mdash; analisi di fattibilit&agrave;, budget, cronoprogramma e pricing inclusi.</p>
+  </div>
+
+  <!-- METRICHE -->
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="number">7</div>
+      <div class="label">Bandi analizzati<br>in un passaggio</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">~22h</div>
+      <div class="label">Effort consulente<br><strong>stimato, non cronometrato</strong></div>
+    </div>
+    <div class="metric-card">
+      <div class="number">3</div>
+      <div class="label">Bandi non fattibili<br>intercettati subito</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">30%</div>
+      <div class="label">Probabilit&agrave; di<br>successo calcolata</div>
+    </div>
+  </div>
+
+  <!-- IL CLIENTE -->
+  <section>
+    <h2>Il Cliente</h2>
+    <div style="background:#FFF8E1; border-left:4px solid #F59E0B; padding:14px 18px; margin:0 0 22px; border-radius:4px; font-size:0.95em; line-height:1.6;">
+      <strong>Trasparenza.</strong> B-HOP Magazine &egrave; l'associazione dell'autrice di questa chain. Non &egrave; un cliente terzo: &egrave; il caso su cui il sistema &egrave; stato costruito, con accesso a documenti e bilanci reali che un caso inventato non avrebbe. <strong>La proposta descritta qui &egrave; stata redatta ma non inviata</strong> &mdash; la finestra di domande della Tavola Valdese apre a gennaio 2027. Nessun bando &egrave; stato vinto con questa chain: non &egrave; ancora validata da un esito.
+    </div>
+
+    <div class="client-card">
+      <div>
+        <div class="client-name">B-HOP Magazine</div>
+        <div class="client-type">APS (ente non profit) &middot; Testata giornalistica registrata &middot; Roma</div>
+        <div class="detail"><span class="key">Forma giuridica</span><span class="val">APS (associazione di promozione sociale)</span></div>
+        <div class="detail"><span class="key">Bilancio annuo</span><span class="val">&euro;11.555</span></div>
+        <div class="detail"><span class="key">Team</span><span class="val">0,5 ULA + 7 redattori volontari</span></div>
+        <div class="detail"><span class="key">Bandi precedenti</span><span class="val">1 presentato, 0 vinti</span></div>
+      </div>
+      <div>
+        <div class="detail"><span class="key">ISSN</span><span class="val">2724-2528 (dal 2018)</span></div>
+        <div class="detail"><span class="key">Focus</span><span class="val">Giornalismo costruttivo, pace, inclusione</span></div>
+        <div class="detail"><span class="key">Produzione</span><span class="val">8 articoli / 9 giorni (attiva)</span></div>
+        <div class="detail"><span class="key">Vincolo chiave</span><span class="val">La redazione scrive. Nessuno gestisce bandi.</span></div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--text-dim); margin-top:16px;"><strong>Nota:</strong> B-HOP Magazine &egrave; un'organizzazione di cui l'autrice &egrave; direttamente parte. Questo case study &egrave; costruito su dati reali del cliente, non su un test sintetico.</p>
+  </section>
+
+  <!-- IL PROBLEMA -->
+  <section>
+    <h2>Il Problema</h2>
+    <h3>La consulenza bandi &egrave; una trappola di tempo</h3>
+    <p>Un consulente bandi tipico spende 40-60 ore per incarico: profilare l'organizzazione, cercare bandi compatibili nei database, verificare l'eligibilit&agrave; di ciascuno, redigere la proposta, costruire il budget, definire il prezzo. La maggior parte di questo lavoro avviene prima di sapere se il bando &egrave; vincibile.</p>
+    <p>Per micro-enti come B-HOP &mdash; bilancio annuo sotto i &euro;12k, nessun track record su bandi, nessuno staff dedicato &mdash; i conti sono brutali. L'onorario del consulente si avvicina spesso all'importo del bando stesso. Un errore di valutazione sulla fattibilit&agrave; = decine di ore buttate.</p>
+
+    <div class="insight-box">
+      <div class="insight-title">La domanda di fondo</div>
+      <p>Si pu&ograve; costruire un sistema che faccia il lavoro di analisi &mdash; profilazione, matching, fattibilit&agrave;, redazione, pricing &mdash; cos&igrave; che il consulente spenda tempo solo su ci&ograve; che &egrave; realmente fattibile?</p>
+    </div>
+  </section>
+
+  <!-- LA CHAIN -->
+  <section>
+    <h2>La Soluzione</h2>
+    <h3>Una chain di 7 prompt, end to end</h3>
+    <p>Ogni prompt prende l'output del precedente come input. La chain gira in sequenza in una singola conversazione. Nessun codice custom, nessuna API &mdash; solo prompt strutturati con contratti input/output rigorosi.</p>
+
+    <div class="chain-flow">
+      <div class="chain-node">
+        <div class="node-id">P0a</div>
+        <div class="node-name">Estrai<br><small>dati grezzi dai docs</small></div>
+      </div>
+      <span class="chain-arrow">&rarr;</span>
+      <div class="chain-node">
+        <div class="node-id">P0b</div>
+        <div class="node-name">Valuta<br><small>viabilit&agrave; cliente</small></div>
+      </div>
+      <span class="chain-arrow">&rarr;</span>
+      <div class="chain-node">
+        <div class="node-id">P1</div>
+        <div class="node-name">Matching<br><small>trova bandi online</small></div>
+      </div>
+      <span class="chain-arrow">&rarr;</span>
+      <div class="chain-node">
+        <div class="node-id">P2</div>
+        <div class="node-name">Fattibilit&agrave;<br><small>analisi 6 check</small></div>
+      </div>
+      <span class="chain-arrow">&rarr;</span>
+      <div class="chain-node">
+        <div class="node-id">P3</div>
+        <div class="node-name">Redazione<br><small>proposta completa</small></div>
+      </div>
+      <span class="chain-arrow">&rarr;</span>
+      <div class="chain-node">
+        <div class="node-id">P3.5</div>
+        <div class="node-name">Compila<br><small>piattaforma bando</small></div>
+      </div>
+      <span class="chain-arrow">&rarr;</span>
+      <div class="chain-node">
+        <div class="node-id">P4</div>
+        <div class="node-name">Pricing<br><small>fee + GO/NO-GO</small></div>
+      </div>
+    </div>
+
+    <p>Ogni prompt produce 3 livelli di output: un cruscotto (vista rapida), il dettaglio completo e allegati strutturati per lo step successivo. Il consulente legge il cruscotto, decide, e avanza al prompt seguente.</p>
+  </section>
+
+  <!-- IL FUNNEL -->
+  <section>
+    <h2>Risultati</h2>
+    <h3>Il funnel: 7 bandi &rarr; 1 proposta</h3>
+
+    <div class="funnel">
+      <div class="funnel-step">
+        <div class="funnel-bar">
+          <span class="step-icon">&#9733;</span>
+          <span class="step-label"><strong>P1 Matching</strong> &mdash; Scouting online su database italiani + EU</span>
+          <span class="step-count">7</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-bar">
+          <span class="step-icon">&#10003;</span>
+          <span class="step-label"><strong>P2 Fattibilit&agrave;</strong> &mdash; 6 check: cofinanziamento, documenti, tempo, partner, rischi, competitivit&agrave;</span>
+          <span class="step-count">4</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-bar">
+          <span class="step-icon">&#9679;</span>
+          <span class="step-label"><strong>P3 Proposta redatta</strong> &mdash; Testo completo, budget, timeline, mappatura criteri</span>
+          <span class="step-count">2</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-bar">
+          <span class="step-icon">&raquo;</span>
+          <span class="step-label"><strong>P4 Prezzato e approvato</strong> &mdash; GO CON CONDIZIONI</span>
+          <span class="step-count">1</span>
+        </div>
+      </div>
+    </div>
+
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Bando</th>
+          <th>Tipo</th>
+          <th>Scadenza</th>
+          <th>Esito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>UCSI Natale XXXII</strong></td>
+          <td>Premio giornalistico</td>
+          <td>31 ott 2026</td>
+          <td><span class="status status-go">Fattibile</span></td>
+        </tr>
+        <tr>
+          <td><strong>Landolfo XV</strong></td>
+          <td>Premio giornalistico</td>
+          <td>30 ott 2026</td>
+          <td><span class="status status-cond">Go con condizioni</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tavola Valdese OPM 2027</strong></td>
+          <td>Contributo fondazione</td>
+          <td>~gen 2027</td>
+          <td><span class="status status-go">Redatto &middot; non inviato</span></td>
+        </tr>
+        <tr>
+          <td><strong>Banca d'Italia 2027</strong></td>
+          <td>Contributo istituzionale</td>
+          <td>feb 2027</td>
+          <td><span class="status status-cond">Go con condizioni</span></td>
+        </tr>
+        <tr>
+          <td><strong>CERV-VALUES</strong></td>
+          <td>Bando EU</td>
+          <td>feb 2027</td>
+          <td><span class="status status-block">Bloccato</span></td>
+        </tr>
+        <tr>
+          <td><strong>CERV-REM</strong></td>
+          <td>Bando EU</td>
+          <td>feb 2027</td>
+          <td><span class="status status-block">Bloccato</span></td>
+        </tr>
+        <tr>
+          <td><strong>Creative Europe</strong></td>
+          <td>Bando EU</td>
+          <td>~feb 2027</td>
+          <td><span class="status status-block">Bloccato</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- GATEKEEPER -->
+  <section>
+    <h2>L'Effetto Gatekeeper</h2>
+    <h3>3 bandi bloccati &mdash; correttamente</h3>
+    <p>La chain non ha solo trovato match. Ha intercettato 3 bandi che sulla carta sembravano promettenti ma avrebbero fatto perdere tempo al consulente. Tutti e tre i bandi EU (CERV-VALUES, CERV-REM, Creative Europe) sono caduti sullo stesso problema strutturale:</p>
+
+    <div class="gatekeeper">
+      <div class="gatekeeper-title">
+        <span style="color: var(--red);">&#10007;</span> Perch&eacute; sono stati bloccati
+      </div>
+      <div class="gatekeeper-grid">
+        <div class="gk-item">
+          <div class="gk-icon">&euro;</div>
+          <div class="gk-name">Gap cofinanziamento</div>
+          <div class="gk-reason">Bilancio annuo &euro;11k non pu&ograve; cofinanziare bandi EU che richiedono 10-40% di match</div>
+        </div>
+        <div class="gk-item">
+          <div class="gk-icon">&oplus;</div>
+          <div class="gk-name">Nessun partenariato</div>
+          <div class="gk-reason">I bandi EU richiedono consorzi transnazionali. B-HOP opera da sola.</div>
+        </div>
+        <div class="gk-item">
+          <div class="gk-icon">&#8635;</div>
+          <div class="gk-name">Mismatch di scala</div>
+          <div class="gk-reason">I budget minimi dei bandi EU superano l'intero fatturato annuo di B-HOP</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-title">Perch&eacute; conta</div>
+      <p>Senza la chain, un consulente potrebbe spendere 15-20 ore a ricercare e tentare queste tre candidature EU prima di realizzare che sono strutturalmente incompatibili. La chain l'ha intercettato nel check di fattibilit&agrave; &mdash; prima di iniziare a scrivere.</p>
+    </div>
+  </section>
+
+  <!-- PROPOSTA -->
+  <section>
+    <h2>Cosa ha prodotto la chain</h2>
+    <h3>Una bozza di proposta reale: &laquo;Voci di Pace&raquo;</h3>
+    <p>P3 ha generato una proposta completa per il bando Tavola Valdese OPM, mappata sui criteri di valutazione del finanziatore. 9 sezioni, budget dettagliato, timeline a 12 mesi. <strong style="color:var(--text-dim);">Nota: questa proposta &egrave; stata redatta come test della chain e non &egrave; stata inviata al finanziatore.</strong></p>
+
+    <div class="proposal-preview">
+      <div class="pp-header">Output P3 &mdash; Bozza proposta (estratto)</div>
+      <div class="pp-title">&laquo;Voci di Pace &mdash; Giornalismo costruttivo per l'educazione alla cittadinanza attiva&raquo;</div>
+      <div class="pp-meta">
+        <span>Categoria: <strong>Educazione alla cittadinanza</strong></span>
+        <span>Durata: <strong>12 mesi</strong></span>
+        <span>Richiesto: <strong>&euro;10.500</strong></span>
+        <span>Cofinanziamento: <strong>&euro;1.200</strong> (volontariato valorizzato)</span>
+      </div>
+      <div class="pp-body">
+        <strong>Obiettivi</strong><br>
+        &bull; Produrre 24 articoli di giornalismo investigativo/costruttivo su diritti civili, inclusione e pace<br>
+        &bull; Organizzare 4 eventi di engagement (2 laboratori nelle scuole + 2 incontri pubblici) a Roma<br>
+        &bull; Raggiungere 15.000 lettori unici, 30% da nuovi canali distributivi<br>
+        &bull; Formare 4 giovani giornalisti (under 30) nei metodi del giornalismo costruttivo<br><br>
+        <strong>Mappatura criteri</strong>: 8 criteri di valutazione identificati, pesati per importanza stimata, ciascuno mappato a una sezione della proposta con valutazione di forza. 3 punti di forza evidenziati, 3 rischi segnalati, 5 gap informativi marcati per follow-up col cliente.
+      </div>
+      <div class="pp-fade"></div>
+    </div>
+  </section>
+
+  <!-- ECONOMIA -->
+  <section>
+    <h2>L'Economia</h2>
+    <h3>P4: Vale la pena prendere questo incarico?</h3>
+
+    <div class="comparison">
+      <div class="comp-card before">
+        <div class="comp-label">Senza la chain <span style="font-size:11px; color:var(--text-dim);">(stima di settore)</span></div>
+        <div class="comp-item"><span class="k">Profilazione</span><span class="v">8-12h</span></div>
+        <div class="comp-item"><span class="k">Scouting bandi</span><span class="v">6-10h</span></div>
+        <div class="comp-item"><span class="k">Fattibilit&agrave; (per bando)</span><span class="v">3-5h &times; 7</span></div>
+        <div class="comp-item"><span class="k">Scrittura proposta</span><span class="v">15-25h</span></div>
+        <div class="comp-item"><span class="k">Analisi pricing</span><span class="v">2-4h</span></div>
+        <div class="comp-item"><span class="k" style="font-weight:600;">Totale</span><span class="v" style="color:var(--red); font-weight:700;">50-80h</span></div>
+      </div>
+      <div class="comp-card after">
+        <div class="comp-label">Con la chain <span style="font-size:11px; color:var(--text-dim);">(proiezione, non misurato)</span></div>
+        <div class="comp-item"><span class="k">Esecuzione chain</span><span class="v">~3h</span></div>
+        <div class="comp-item"><span class="k">Revisione + decisioni</span><span class="v">~2h</span></div>
+        <div class="comp-item"><span class="k">Raccolta dati cliente</span><span class="v">4h</span></div>
+        <div class="comp-item"><span class="k">Rifinitura + invio</span><span class="v">13h</span></div>
+        <div class="comp-item"><span class="k">Admin</span><span class="v">2h</span></div>
+        <div class="comp-item"><span class="k" style="font-weight:600;">Totale</span><span class="v" style="color:var(--green); font-weight:700;">~22h</span></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-icon">&#10003;</div>
+      <div class="verdict-text">GO CON CONDIZIONI</div>
+      <div class="verdict-sub">
+        Fee flat &euro;880 (8,4% dell'importo del bando).
+        Unico modello pricing sostenibile al 30% di probabilit&agrave; di successo.
+        La success fee ha valore atteso negativo.
+        GO perch&eacute;: primo case study end-to-end + potenziale cliente ricorrente (pipeline di 7 bandi).
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-VALIDAZIONE -->
+  <section>
+    <h2>Cross-validazione</h2>
+    <h3>Stessa chain, tipo di cliente diverso</h3>
+    <p>Per verificare che la chain funzioni anche fuori dal nonprofit, &egrave; stata testata su un secondo cliente: una startup for-profit (Srl) nell'economia circolare, centro Italia &mdash; forma giuridica diversa, panorama bandi diverso, profilo di rischio diverso. <span style="font-size:13px; color:var(--text-dim);">(Cliente anonimizzato.)</span></p>
+
+    <div class="metrics" style="margin-top:24px;">
+      <div class="metric-card">
+        <div class="number">87%</div>
+        <div class="label">Completezza profilo<br>(test enriched)</div>
+      </div>
+      <div class="metric-card">
+        <div class="number">3</div>
+        <div class="label">Bandi matchati<br>(EU, nazionale, regionale)</div>
+      </div>
+      <div class="metric-card">
+        <div class="number">8</div>
+        <div class="label">Retroazioni<br>estratte da questo cliente</div>
+      </div>
+    </div>
+    <p>Uno stress test sul profilo originale (completezza 59% &mdash; mancavano codice settore, bilancio, status startup) ha confermato il comportamento gatekeeper: la chain ha bloccato tutti i 3 bandi come "SOSPESO" e ha rifiutato di forzare un verdetto su dati incompleti.</p>
+  </section>
+
+  <!-- COSA HO IMPARATO -->
+  <section>
+    <h2>Cosa Ho Imparato</h2>
+
+    <div class="insight-box" style="margin-bottom:20px;">
+      <div class="insight-title">1. Criteri prima, scrittura dopo</div>
+      <p>La bozza di proposta parte dalla griglia di valutazione del finanziatore, non da una pagina bianca. Ogni sezione mappa su un criterio, pesato per importanza. In teoria &egrave; ovvio &mdash; in pratica quasi nessuno lo fa.</p>
+    </div>
+    <div class="insight-box" style="margin-bottom:20px;">
+      <div class="insight-title">2. La chain &egrave; un gatekeeper, non un acceleratore</div>
+      <p>Il valore pi&ugrave; grande non &egrave; la velocit&agrave;. &Egrave; fermare il lavoro su bandi non fattibili prima che il consulente investa ore reali. 3 bandi su 7 bloccati = ~30 ore non sprecate.</p>
+    </div>
+    <div class="insight-box" style="margin-bottom:20px;">
+      <div class="insight-title">3. I dati incompleti sono una feature</div>
+      <p>Quando il profilo cliente &egrave; completo al 59%, la chain dice "SOSPESO" &mdash; non "probabilmente ok." Questo &egrave; il comportamento corretto. Un sistema che indovina su dati mancanti &egrave; peggio di nessun sistema.</p>
+    </div>
+    <div class="insight-box">
+      <div class="insight-title">4. Il pricing uccide le cattive deal presto</div>
+      <p>P4 ha mostrato che la success fee ha valore atteso negativo al 30% di probabilit&agrave;. Senza quel calcolo, il consulente avrebbe potuto accettare l'incarico a success e rimetterci. Il modello flat fee &mdash; l'unico sostenibile &mdash; &egrave; stato identificato automaticamente.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>
+      <strong>Chain Prompt Finanza Agevolata</strong> &mdash; 7 prompt, 2 clienti testati, 13 retroazioni applicate<br>
+      Costruita da <a href="https://www.linkedin.com/in/serenadelprete/" target="_blank">Serena Del Prete</a><br><br>
+      <a href="https://github.com/serenadelprete27-debug/scouting-bandi-cliente" target="_blank">Repository GitHub</a> &middot;
+      Prompt open source &middot; Ottobre 2026
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
