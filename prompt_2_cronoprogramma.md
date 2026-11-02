@@ -1,8 +1,8 @@
 # PROMPT 2 — CRONOPROGRAMMA + 6 CHECK FATTIBILITÀ
 
 > Terzo anello della chain. Riceve i bandi candidabili dal Prompt 1 e produce: cronoprogramma di candidatura, scheda fattibilità per bando, checklist documenti consolidata.
-> **Versione: v1.3** — Data: 16 ottobre 2026 — Changelog v1.2→v1.3: +Gap-registrazione in C2 (prerequisiti piattaforma PIC/SPID/GeCoWEB con tempi per piattaforma). v1.2: 8 ottobre 2026
-> Sostituisce: v1.1
+> **Versione: v1.4** — Data: 2 novembre 2026 — Changelog v1.3→v1.4: R23 gate vs rischio-di-scarto in CHECK 2 (gap-terzi a costo ~zero → candidare subito, non bloccare; requisiti ⚠️ da verificare su regolamento, non dati per certi). Trigger: UCSI Natale XXXII — gap bloccante ha fermato candidatura 3 settimane per un bando a costo zero, e il requisito bloccante non si applicava. v1.3: 16 ottobre 2026
+> Sostituisce: v1.3
 > Autrice: Serena Del Prete (con assistenza Claude)
 
 ---
@@ -112,10 +112,22 @@ Confronta i documenti richiesti dal bando con quelli già disponibili nella Sche
 
 Per ogni gap: cosa serve, chi lo produce, tempi stimati di ottenimento.
 
+**R23 — Classificazione gap-terzi: gate vs rischio-di-scarto (v1.4, 2/11/2026).**
+
+Non tutti i gap-terzi hanno lo stesso peso operativo. Prima di classificare un gap-terzi come bloccante, applica il **test del costo di partecipazione**:
+
+- **Gate** — il costo di partecipazione è positivo (ore significative di redazione proposta, cofinanziamento, documenti a pagamento, fideiussioni, partner obbligatori da ingaggiare). Un gap-terzi irrisolto su un bando a costo positivo → **verificare prima di investire**, perché sbagliare costa. Il gap resta bloccante: non procedere alla redazione finché il requisito non è chiarito.
+- **Rischio-di-scarto** — il costo di partecipazione è ~zero (form online, domanda semplice, nessun allegato a pagamento, nessun impegno vincolante). Un gap-terzi irrisolto su un bando a costo zero → **candidare e verificare in parallelo**. Il prompt deve dire esplicitamente "NON BLOCCARE — candidare subito, verificare in parallelo" nella prossima azione. L'esito peggiore (scarto) equivale a non aver candidato, a fronte di zero costi. Bloccare è l'errore: il tempo che passa è il costo reale.
+
+Il discriminante è già calcolato dal P2 stesso: CHECK 1 (cofinanziamento) e CHECK 3 (ore di preparazione) forniscono i dati necessari per stabilire se il costo di partecipazione è positivo o ~zero. Non serve un dato nuovo.
+
+**Regola aggiuntiva**: un requisito soggettivo marcato ⚠️ (incerto) nel CHECK 2, quando il regolamento integrale del bando non è stato letto, va marcato come "**da verificare su regolamento**" — non come fatto certo. Se il tempo per verificare è inferiore al tempo per candidare, verificare prima; altrimenti candidare e verificare in parallelo (stessa logica gate/rischio-di-scarto).
+
 **Esiti:**
 - ✅ ok: tutti i documenti disponibili o ottenibili in ≤7 giorni
 - ⚠️ attenzione: 1-3 gap di produzione, tutti ottenibili prima della scadenza
-- 🔴 critico: gap-terzi con tempi incerti o gap-produzione che richiede >60% del tempo residuo prima della scadenza
+- 🔴 critico: gap-terzi **gate** con tempi incerti o gap-produzione che richiede >60% del tempo residuo prima della scadenza
+- 🟡 rischio-di-scarto: gap-terzi su bando a costo ~zero — candidare subito, verificare in parallelo (R23)
 - ⚫ non valutabile: regolamento bando non specifica i documenti richiesti (raro ma possibile)
 
 ### CHECK 3 — Scadenza vs ore preparazione?

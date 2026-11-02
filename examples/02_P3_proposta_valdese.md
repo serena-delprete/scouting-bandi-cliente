@@ -368,7 +368,7 @@ La sostenibilità del progetto è intrinseca alla struttura dell'associazione:
 | 4 | Bilancio consuntivo 2023 | Obbligatorio | da verificare disponibilità | Tesoriere |
 | 5 | Bilancio consuntivo 2024 | Obbligatorio | da verificare disponibilità | Tesoriere |
 | 6 | Verbale assemblea approvazione bilancio | Obbligatorio | da verificare | Segretario |
-| 7 | Copia documento identità legale rappresentante | Obbligatorio | da produrre | Fabrizio Falcone |
+| 7 | Copia documento identità legale rappresentante | Obbligatorio | da produrre | Referente B |
 | 8 | Lettere di adesione partner (se presenti) | Facoltativo | N/A — progetto singolo | — |
 | 9 | Preventivi per acquisti ≥€15.000 | Obb. se applicabile | N/A — nessuna voce ≥€15k | — |
 | 10 | CV responsabile progetto | Facoltativo ma consigliato | da produrre | la responsabile editoriale |

@@ -26,7 +26,7 @@ TEMPO DI RITORNO: 2-3 mesi (flat) / 12-18 mesi (success)
 VERDETTO: GO CON CONDIZIONI
 MOTIVAZIONE: Mandato economicamente marginale (fee €880 su micro ETS). 
 GO solo se: (1) flat fee pagata all'invio, (2) il mandato produce il primo 
-case study completo della chain P0→P4 (portfolio value), (3) Patrizia 
+case study completo della chain P0→P4 (portfolio value), (3) Referente A 
 fornisce i dati mancanti entro dicembre senza eccessivo follow-up.
 
 ⏭️ Dettaglio calcoli: Livello 2. Fattori non-economici: Livello 3.
@@ -43,9 +43,9 @@ Fonti: draft P3 (9 sezioni, 5 gap informativi ridotti a 0.5, piattaforma JUNO, b
 | Fase | Ore stimate | Costo opportunità (€) | Note |
 |---|---|---|---|
 | Analisi bando + griglia | 2 | 80 | Già fatto in P2. Residuo: verifica LG 2027 quando pubblicate |
-| Raccolta dati cliente | 4 | 160 | 0.5 gap residui (audience). Patrizia è reattiva ma va seguita |
+| Raccolta dati cliente | 4 | 160 | 0.5 gap residui (audience). Referente A è reattiva ma va seguita |
 | Redazione proposta | 8 | 320 | 9 sezioni, criteri qualitativi (no punteggi → stima pesi). Draft P3 copre ~70%, serve rifinitura con dati reali |
-| Revisioni | 3 | 120 | 1-2 cicli con Patrizia. Stima conservativa |
+| Revisioni | 3 | 120 | 1-2 cicli con Referente A. Stima conservativa |
 | Compilazione piattaforma JUNO | 3 | 120 | Prima volta su JUNO per il consulente. Include: registrazione, navigazione campi, upload allegati, check finale |
 | Amministrazione | 2 | 80 | Contratto, comunicazioni, fatturazione |
 | **TOTALE** | **22** | **€880** | Buffer +20% già incluso nelle stime per fase |
@@ -137,7 +137,7 @@ Solo il modello flat regge.
 | Referenza cliente | **MEDIO** | B-HOP ha visibilità (Il Fatto, ANSA, premio Campidoglio) ma non nel circuito bandi. Referenza utile per settore ETS/cultura, non per imprese |
 | Learning | **ALTO** | Prima esperienza su piattaforma JUNO. Primo bando Valdese OPM. Primo bando con criteri qualitativi senza punteggi. Tre "primi" = apprendimento alto |
 | Relazione ricorrente | **SÌ** | B-HOP ha pipeline P2 con 7 bandi. Se Valdese va bene → Cariplo, CERV, altri OPM. Cliente potenzialmente ricorrente |
-| Rischio reputazionale | **BASSO** | Patrizia è collaborativa (già lavorato insieme su Comune Roma). Nessun rischio se il bando non viene vinto — Valdese è competitivo, è atteso |
+| Rischio reputazionale | **BASSO** | Referente A è collaborativa (già lavorato insieme su Comune Roma). Nessun rischio se il bando non viene vinto — Valdese è competitivo, è atteso |
 | Costo opportunità reale | **BASSO** | 22 ore su 60 disponibili/mese = 37% della capacità mensile. Non preclude altri mandati. Periodo gen-feb tipicamente bassa stagione bandi |
 
 ### 5.3.2 Scenari alternativi
@@ -157,7 +157,7 @@ Solo il modello flat regge.
 ```
 Oggetto: Proposta di consulenza — Bando Tavola Valdese OPM 2027
 
-Gentile Patrizia,
+Gentile Referente A,
 
 a seguito dell'analisi del bando Otto per Mille della Chiesa Evangelica Valdese 
 (edizione 2027), propongo il seguente servizio di consulenza per la candidatura 
@@ -196,7 +196,7 @@ Serena
 - Il draft P3 copre ~70% della proposta finale. Il 30% residuo è: dati reali B-HOP (audience, contatti scuole) + adattamento a LG 2027 + fine-tuning JUNO.
 
 **Verso P0b**:
-- Bilancio B-HOP €11.555 → la fee flat €880 = 7.6% del bilancio annuo. Sostenibile ma non trascurabile per una micro APS. Se Patrizia manifesta difficoltà a pagare, valutare: (a) misto con anticipo ridotto €300 + success 5%, oppure (b) scambio servizi (es. articolo su B-HOP per portfolio consulente).
+- Bilancio B-HOP €11.555 → la fee flat €880 = 7.6% del bilancio annuo. Sostenibile ma non trascurabile per una micro APS. Se Referente A manifesta difficoltà a pagare, valutare: (a) misto con anticipo ridotto €300 + success 5%, oppure (b) scambio servizi (es. articolo su B-HOP per portfolio consulente).
 
 **Verso P2**:
 - Probabilità P4 (30%) è coerente col verdetto P2 (FATTIBILE con ⚠️ su C2 track record e C5 cofinanziamento). Nessuna contraddizione.

@@ -1,10 +1,10 @@
 # PROMPT 1 — MATCHING E SCOUTING BANDI
 
 > Sistema di scouting online + filtro eligibility + fit gradato per consulenza in finanza agevolata.
-> **Versione: v1.5** — Data: 29 ottobre 2026 — Autrice: Serena Del Prete (con assistenza Claude).
-> R20: S1 non è KS per bandi che ammettono società costituende. R18: aggiunto livello camerale/PID alla matrice scouting (Asse 1 + Asse 3b + calendario predittivo + 7° tipo query). R19b: espansione query con mapping semantico R12.
+> **Versione: v1.6** — Data: 2 novembre 2026 — Autrice: Serena Del Prete (con assistenza Claude).
+> R22: 4 fix da errori fattuali DM InsiemePiu — S19 status occupazionale, O2 cap variabili per stage, S14 % variabili per composizione team, filtro territoriale fondazioni bancarie in Fase B.
 > **Posizione nella chain**: dopo Prompt 0a (Extractor) + 0b (Evaluator), prima di Prompt 2 (Cronoprogramma + 6 check fattibilità) o Prompt 4 (Valutazione candidatura).
-> Sostituisce: v1.3 del 16 ottobre 2026.
+> Sostituisce: v1.5 del 29 ottobre 2026.
 
 ---
 
@@ -42,6 +42,20 @@ Tre fix emersi dal secondo test client (Sfusitalia Srl, 16/10/2026). Stress test
 
 **Fix 9 — S3 ATECO-unknown handling.** Quando il codice ATECO del cliente è ignoto (campo ⚫ nella Scheda), S3 va distinto in due casi: (a) il bando richiede un ATECO specifico → ⚫ con nota "ATECO cliente sconosciuto, verificare ammissibilità"; (b) il bando non filtra per ATECO → ✅ non_applicabile. Il v1.2 non distingueva, causando falsi KS su bandi che non filtrano per ATECO.
 
+## CHANGELOG v1.5 → v1.6
+
+Quattro fix emersi da errori fattuali nel DM InsiemePiu (29/10/2026), corretti da Serena. Trigger: il primo DM a un cliente reale ha mostrato gap nel filtro P1 che producevano informazioni errate o incomplete.
+
+**R22a — S19 Status occupazionale beneficiario.** Nuovo requisito soggettivo S19 (KS). Bandi tipo Autoimpiego, SELFIEmployment, NEET richiedono che la persona fisica sia disoccupata/inoccupata. S6 copriva solo l'anzianità dell'impresa, non lo status della persona. Senza S19 il filtro era cieco su questo requisito.
+
+**R22b — O2 Cap variabili per stage.** Nota aggiunta a O2: se l'importo massimo varia per fascia di anzianità/stage (es. ON: €3M per 36-60 mesi, €1,5M per costituende), riportare il tetto applicabile al cliente, non il massimo assoluto. Il P1 trattava "importo max" come numero singolo.
+
+**R22c — S14 Percentuali variabili per composizione team.** S14 esteso: se la composizione del team modifica la percentuale di copertura (es. Smart&Start: 80% base, 90% se team interamente femminile/under 35), riportare entrambi i valori. S14 non è solo binario accesso/no-accesso.
+
+**R22d — Filtro territoriale fondazioni bancarie in Fase B.** Nuova regola in Fase B: per bandi di fondazioni bancarie/private con vincolo territoriale, verificare che la sede operativa del cliente rientri nel perimetro della fondazione. S4 controllava la sede del cliente ma non il perimetro della fondazione erogatrice — Cariparma e Cariplo passavano per clienti fuori perimetro.
+
+Cosa NON cambia: tassonomia KS/GS/FG (sez. 3), output stratificato 3 livelli (sez. 7), matrice profilo×fonti (sez. 8.2), gestione temporalità (sez. 9), requisiti oggettivi O1-O15 invariati (tranne nota O2).
+
 ---
 
 ## INDICE
@@ -49,7 +63,7 @@ Tre fix emersi dal secondo test client (Sfusitalia Srl, 16/10/2026). Stress test
 1. Cosa sei e cosa devi fare
 2. Workflow in 3 fasi (Scouting → Filtro → Fit gradato)
 3. Tassonomia dei requisiti: KS / GS / FG
-4. Lista chiusa requisiti soggettivi (S1-S18) con classificazione
+4. Lista chiusa requisiti soggettivi (S1-S19) con classificazione
 5. Lista chiusa requisiti oggettivi (O1-O15) con classificazione
 6. Killer bando (lista chiusa)
 7. Output stratificato in 3 livelli
@@ -88,7 +102,7 @@ Nessuna fascia blocca lo scouting. Il valore aggiunto per clienti a bassa comple
 
 **Fase A — Scouting.** Sulla base della Scheda Cliente, generi parole chiave di ricerca e consulti fonti istituzionali e aggregatori affidabili (sez. 8). Raccogli 20-50 bandi attivi pertinenti al profilo cliente. *Output Fase A*: lista grezza bandi trovati con metadati minimi (ente erogatore, titolo, scadenza, link fonte ufficiale).
 
-**Fase B — Filtro su requisiti soggettivi (S1-S18).** Per ogni bando verifichi i 18 requisiti soggettivi. Per ogni violazione classifichi secondo la tassonomia KS / GS / FG (sez. 3): KS (Killer Strutturale) → bando OUT immediato; GS (Gap Sanabile) → bando IN con condizione operativa esplicita + tempi di sanatura; FG (Fit Gradato) → bando IN con fit ridotto. *Output Fase B*: bandi sopravvissuti (incluso quelli con gap sanabili) + bandi scartati per KS con motivazione.
+**Fase B — Filtro su requisiti soggettivi (S1-S19).** Per ogni bando verifichi i 19 requisiti soggettivi. Per ogni violazione classifichi secondo la tassonomia KS / GS / FG (sez. 3): KS (Killer Strutturale) → bando OUT immediato; GS (Gap Sanabile) → bando IN con condizione operativa esplicita + tempi di sanatura; FG (Fit Gradato) → bando IN con fit ridotto. **R22d — Filtro territoriale fondazioni**: per bandi di fondazioni bancarie/private con vincolo territoriale (Cariplo → Lombardia/Piemonte, Cariparma → Emilia, Compagnia San Paolo → Piemonte/Liguria, ecc.), verificare che la sede operativa del cliente rientri nel perimetro della fondazione erogatrice, non solo il contrario. S4 controlla la sede del *cliente* ma non verifica che la *fondazione* copra quel territorio — questo check è aggiuntivo e specifico per fondazioni bancarie/private. Se il cliente è fuori perimetro fondazione → bando OUT come KS (il perimetro fondazione non è sanabile). *Output Fase B*: bandi sopravvissuti (incluso quelli con gap sanabili) + bandi scartati per KS con motivazione.
 
 **Fase C — Fit gradato su requisiti oggettivi e qualitativi.** Sui bandi sopravvissuti applichi fit gradato sui requisiti oggettivi O1-O15 (sez. 5) e produci una valutazione qualitativa di coerenza/convenienza. *Output Fase C*: bandi classificati come fit alto / fit medio / fit basso, con prossima azione consigliata per ognuno.
 
@@ -107,7 +121,7 @@ Effetto: bando IN con condizione esplicita. L'output deve specificare: (1) cosa 
 
 **3.3 FG — Fit Gradato.** Requisito non perfettamente soddisfatto ma non escludente. Influenza il fit qualitativo (alto/medio/basso) ma non blocca. Tipico: la maggior parte dei requisiti oggettivi (O1-O15).
 
-## 4. LISTA CHIUSA REQUISITI SOGGETTIVI (S1-S18)
+## 4. LISTA CHIUSA REQUISITI SOGGETTIVI (S1-S19)
 
 > Convenzione: per ogni bando, verifica TUTTI questi requisiti. Se un requisito non è esplicitato dal bando, marcalo `non_applicabile` (non saltarlo silenziosamente).
 
@@ -129,13 +143,14 @@ Effetto: bando IN con condizione esplicita. L'output deve specificare: (1) cosa 
 | S11 | Plafond de minimis residuo (Reg. 2023/2831, €300k in 3 anni) | GS-lento o KS | 36 mesi rolling | KS per scadenze imminenti. GS-lento se si aspetta rigenerazione plafond |
 | S12 | Regime di aiuto compatibile (no "impresa in difficoltà" GBER) | GS-medio | 60-180 giorni | Sanabile con rafforzamento patrimoniale. Per startup <3 anni: deroga automatica (R4 Prompt 0) |
 | S13 | Settori esclusi (armi, gioco, tabacco, energia fossile per bandi green) | KS | Non sanabile | Cambiare settore = cambiare azienda |
-| S14 | Composizione organi premiale OBBLIGATORIA (femminile ⅔ DL 185/2000, giovanile ⅔ DL 145/2013, residenza Sud) | GS-medio | 30-60 giorni | Modifica CdA per assemblea + iscrizione RI |
+| S14 | Composizione organi premiale OBBLIGATORIA (femminile ⅔ DL 185/2000, giovanile ⅔ DL 145/2013, residenza Sud) | GS-medio | 30-60 giorni | Modifica CdA per assemblea + iscrizione RI. **R22c**: se la composizione del team modifica la **percentuale di copertura** (non solo l'accesso), riportare entrambi i valori nel Cruscotto. Es. Smart&Start: 80% base, 90% se team interamente femminile o under 35. S14 non è solo binario accesso/no-accesso — include il delta di copertura quando il bando lo prevede |
 | S15 | Requisiti di non duplicazione aiuti | GS-variabile | Variabile | A volte si rinuncia all'altro aiuto, a volte si segrega su spese diverse |
 | S16 | Esperienza pregressa minima (es. "≥3 progetti in 5 anni", "fatturato medio 3 esercizi > €X") | KS | Non sanabile | Non puoi inventare progetti pregressi |
 | S17 | Capitale sociale minimo versato (es. €10k Smart&Start) | GS-veloce | 30-60 giorni | Aumento capitale standard: delibera + versamento + iscrizione RI |
 | S18 | Requisiti tecnico-professionali personale (% laureati, ricercatori, CTO certificato) | GS-variabile | 30-180 giorni | Assunzione richiede ricerca + selezione + onboarding |
+| S19 | Status occupazionale beneficiario (disoccupato/inoccupato/inattivo/NEET richiesto) | KS | Non sanabile per quel bando | **R22a**: bandi tipo Autoimpiego, SELFIEmployment, NEET, Garanzia Giovani richiedono che la *persona fisica* beneficiaria sia disoccupata/inoccupata/inattiva al momento della domanda. S6 copre l'anzianità dell'*impresa*, non lo status della persona. Se il bando richiede uno status occupazionale specifico e il beneficiario non lo possiede → KS. Se il bando non lo richiede → `non_applicabile`. |
 
-**4.1 Sintesi visiva.** Killer strutturali puri (6 + S1 condizionato): S1 (KS tranne R20 per costituende), S3, S6 (min e max), S8, S9, S13, S16. Gap sanabili tipici (11, alcuni con sotto-classificazione): S2, S4.a/b/c, S5, S7, S10, S11, S12, S14, S15, S17, S18. La maggior parte dei requisiti soggettivi è sanabile, contrariamente all'intuizione comune. Il prompt deve sempre **provare a sanare** prima di scartare.
+**4.1 Sintesi visiva.** Killer strutturali puri (7 + S1 condizionato): S1 (KS tranne R20 per costituende), S3, S6 (min e max), S8, S9, S13, S16, S19. Gap sanabili tipici (11, alcuni con sotto-classificazione): S2, S4.a/b/c, S5, S7, S10, S11, S12, S14, S15, S17, S18. La maggior parte dei requisiti soggettivi è sanabile, contrariamente all'intuizione comune. Il prompt deve sempre **provare a sanare** prima di scartare.
 
 ## 5. LISTA CHIUSA REQUISITI OGGETTIVI (O1-O15)
 
@@ -144,7 +159,7 @@ Riguardano il PROGETTO da candidare, non il SOGGETTO. La maggior parte sono FG; 
 | # | Requisito | Tipo | Note |
 |---|---|---|---|
 | O1 | Tipologia investimento ammessa (R&S, formazione, internazionalizzazione, beni mat./immat., circolante) | FG | Fit alto se coerente con need; basso se ortogonale. KS solo se cliente strutturalmente non può fare quel tipo |
-| O2 | Importo minimo / massimo finanziabile | FG | Fit alto se range coerente con dimensione cliente. KS solo se sotto soglia minima e non aumentabile |
+| O2 | Importo minimo / massimo finanziabile | FG | Fit alto se range coerente con dimensione cliente. KS solo se sotto soglia minima e non aumentabile. **R22b**: se l'importo massimo varia per fascia di anzianità/stage dell'impresa (es. ON: €3M per 36-60 mesi, €1,5M per costituende/nuove), riportare il tetto applicabile al cliente specifico, non il massimo assoluto del bando |
 | O3 | Spese ammissibili | FG | Fit alto se coerenti con composizione fabbisogno tipica |
 | O4 | Durata massima del progetto (12-36 mesi tipici) | FG | Fit gradato per complessità progetto |
 | O5 | TRL minimo richiesto (solo bandi R&S) | FG o KS | Fit alto se TRL cliente ≥ richiesto. KS se gap di 3+ livelli strutturale |
@@ -163,7 +178,7 @@ Riguardano il PROGETTO da candidare, non il SOGGETTO. La maggior parte sono FG; 
 
 Per coerenza con la sez. 4 dei killer mandato del Prompt 0.
 
-- **KB1 — Killer Strutturale soggettivo (KS).** Violazione di un requisito S1-S18 classificato KS. Bando OUT immediato.
+- **KB1 — Killer Strutturale soggettivo (KS).** Violazione di un requisito S1-S19 classificato KS. Bando OUT immediato.
 - **KB2 — Killer Strutturale oggettivo (KS).** Violazione di O5/O7/O8 in modo strutturalmente non sanabile. Bando OUT immediato.
 - **KB3 — KO operativo per timing.** Gap sanabile in astratto (S2/S5/S7/S10/S11/S12/S14/S17/S18 o S4.a/b) ma scadenza del bando precedente al tempo di sanatura stimato. OUT operativo per QUESTO bando, da rivalutare per bandi futuri simili. Esempio: scadenza tra 20 giorni, cliente deve acquisire status startup innovativa (GS-medio, 30-60gg) → KB3.
 - **KB4 — Scadenza imminente.** Bando con scadenza <14 giorni e Scheda con completezza <80%. Segnalato come `🚨 SCADENZA URGENTE — completezza Scheda insufficiente`. Non è OUT strutturale: valido ma operativamente difficile.
