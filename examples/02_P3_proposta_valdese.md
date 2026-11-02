@@ -350,7 +350,7 @@ La sostenibilità del progetto è intrinseca alla struttura dell'associazione:
 
 | # | Gap | Sezione | Tipo | Azione richiesta |
 |---|---|---|---|---|
-| 1 | Audience attuale B-HOP (visite mensili, follower, newsletter) | §2 Contesto, §8 Indicatori | DA CHIEDERE | Chiedere a Patrizia Caiffa i dati Google Analytics + social |
+| 1 | Audience attuale B-HOP (visite mensili, follower, newsletter) | §2 Contesto, §8 Indicatori | DA CHIEDERE | Chiedere a la responsabile editoriale i dati Google Analytics + social |
 | 2 | Contatti con scuole superiori Roma | §4 Att.2 | DA CHIEDERE | Chiedere se la rete associativa ha già contatti scolastici |
 | 3 | 4 giovani collaboratori: già identificati? | §4 Att.3 | DA CHIEDERE | Chiedere se ci sono candidati o se serve call pubblica |
 | 4 | Regime IVA di B-HOP | §6 Budget | DA VERIFICARE | Verificare se APS in regime forfettario → importi lordi o netti |
@@ -371,7 +371,7 @@ La sostenibilità del progetto è intrinseca alla struttura dell'associazione:
 | 7 | Copia documento identità legale rappresentante | Obbligatorio | da produrre | Fabrizio Falcone |
 | 8 | Lettere di adesione partner (se presenti) | Facoltativo | N/A — progetto singolo | — |
 | 9 | Preventivi per acquisti ≥€15.000 | Obb. se applicabile | N/A — nessuna voce ≥€15k | — |
-| 10 | CV responsabile progetto | Facoltativo ma consigliato | da produrre | Patrizia Caiffa |
+| 10 | CV responsabile progetto | Facoltativo ma consigliato | da produrre | la responsabile editoriale |
 | 11 | Relazione attività pregressa | Consigliato (non esplicitamente obb.) | da produrre | Direzione |
 
 ---

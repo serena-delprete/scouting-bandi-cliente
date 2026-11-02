@@ -63,7 +63,7 @@ Scadenza: 31/10/2026 | Importo: Targa + premi in denaro su 6 categorie | Cofinan
 | # | Check | Esito | Dettaglio |
 |---|---|---|---|
 | 1 | Cofinanziamento sostenibile? | ✅ | Iscrizione gratuita, candidatura online, zero costi |
-| 2 | Documenti gap? | ⚠️ | Gap-terzi: verifica iscrizione ODG per ciascun autore candidato (Rojas Atzu, Mattio, Proietti). Se non iscritti all'Ordine → non candidabili. Tempi: 1-3gg per verifica |
+| 2 | Documenti gap? | ⚠️ | Gap-terzi: verifica iscrizione ODG per ciascun autore candidato (Autrice A, Autrice B, Autrice C). Se non iscritti all'Ordine → non candidabili. Tempi: 1-3gg per verifica |
 | 3 | Scadenza vs preparazione? | ✅ | 4-8 ore totali (3 form online + selezione articoli). Giorni utili: 24×0.6=14.4 → 14.4×4=57.6 ore disponibili. Margine >85% |
 | 4 | Partenariato? | ✅ | Non richiesto — candidatura individuale per autore/testata |
 | 5 | Rischi post-erogazione? | ✅ | Premio: targa + denaro, nessun vincolo, nessuna rendicontazione |
@@ -73,7 +73,7 @@ Scadenza: 31/10/2026 | Importo: Targa + premi in denaro su 6 categorie | Cofinan
 Tre candidature a costo zero su form online: Premio Stampa ("Punto luce"), Genio della donna ("In Brasile una scuola italiana"), Targa Athesis (da verificare under 30). Unico rischio reale: se gli autori non sono iscritti all'Ordine, l'intera candidatura cade. La verifica costa 30 minuti e va fatta prima di tutto il resto.
 
 ### Prossima azione
-Verificare iscrizione ODG di Sharon Rojas Atzu, Erika Mattio e Laura Proietti. Se confermate → compilare i 3 form su premioucsi.it entro il 14/10.
+Verificare iscrizione ODG di Autrice A, Autrice B e Autrice C. Se confermate → compilare i 3 form su premioucsi.it entro il 14/10.
 
 ### Documenti necessari per questa candidatura
 
@@ -93,7 +93,7 @@ Scadenza: 30/10/2026 | Importo: €1.000 + targa (sezione web) | Cofinanziamento
 | # | Check | Esito | Dettaglio |
 |---|---|---|---|
 | 1 | Cofinanziamento sostenibile? | ✅ | Partecipazione gratuita |
-| 2 | Documenti gap? | ⚠️ | Gap-terzi: verifica iscrizione ODG + quota annuale in regola di Vincenzo Sorrentino. Invio via PEC o raccomandata (non form online) → gap operativo minimo (30 min + €6.80 PEC o €7 raccomandata) |
+| 2 | Documenti gap? | ⚠️ | Gap-terzi: verifica iscrizione ODG + quota annuale in regola di Autore D. Invio via PEC o raccomandata (non form online) → gap operativo minimo (30 min + €6.80 PEC o €7 raccomandata) |
 | 3 | Scadenza vs preparazione? | ✅ | 2-4 ore (1 articolo, 1 invio PEC/raccomandata). Giorni utili: 23×0.6=13.8 → 55.2 ore disponibili. Margine >90% |
 | 4 | Partenariato? | ✅ | Non richiesto |
 | 5 | Rischi post-erogazione? | ✅ | Premio, nessun vincolo post |
@@ -103,13 +103,13 @@ Scadenza: 30/10/2026 | Importo: €1.000 + targa (sezione web) | Cofinanziamento
 Tecnicamente fattibile (0 🔴), ma il match è basso (★★☆☆☆): il premio premia giornalismo su "ambiente, natura, agricoltura, agroalimentare, territorio e ricerca scientifica **in Campania**". B-HOP è testata nazionale. L'unico articolo candidabile è "A Laurito il curioso Museo del Macinino da caffè" (Cilento). Investimento: 2 ore per una probabilità bassa su un premio a vocazione regionale con giuria campana.
 
 ### Prossima azione
-**Go/no-go da chiudere venerdì 09/10.** Se go: verificare ODG Sorrentino, preparare PEC. Se no-go: scrivere la motivazione e chiudere la riga. Non portare avanti 3 settimane.
+**Go/no-go da chiudere venerdì 09/10.** Se go: verificare ODG Autore D, preparare PEC. Se no-go: scrivere la motivazione e chiudere la riga. Non portare avanti 3 settimane.
 
 ### Documenti necessari per questa candidatura
 
 | # | Documento | Stato | Chi lo produce | Tempi |
 |---|---|---|---|---|
-| 1 | Iscrizione ODG autore (Sorrentino) + quota in regola | da verificare | Autore / ODG | 1-3 gg |
+| 1 | Iscrizione ODG autore (Autore D) + quota in regola | da verificare | Autore / ODG | 1-3 gg |
 | 2 | Articolo pubblicato (link + copia) | disponibile | Redazione | 0 gg |
 | 3 | PEC o raccomandata con documentazione | da produrre | Consulente | 30 min |
 
@@ -257,7 +257,7 @@ Consolida tutti i documenti per i 4 bandi fattibili. Ogni documento compare una 
 
 | # | Documento | Bandi che lo richiedono | Stato | Urgenza | Chi | Tempi |
 |---|---|---|---|---|---|---|
-| 1 | **Verifica iscrizione ODG autori** (Rojas Atzu, Mattio, Proietti, Sorrentino) | UCSI, Landolfo | **da verificare** | **ENTRO 09/10** | Autori → ODG | 1-3 gg |
+| 1 | **Verifica iscrizione ODG autori** (Autrice A, Autrice B, Autrice C, Autore D) | UCSI, Landolfo | **da verificare** | **ENTRO 09/10** | Autori → ODG | 1-3 gg |
 | 2 | **Bozza progetto + budget (BdI)** | Banca d'Italia | **da produrre** | **ENTRO 31/12** (dossier aperto 09/10) | Consulente + direzione | 10-15 gg |
 | 3 | Progetto narrativo (Valdese) | Tavola Valdese | da produrre | entro 30/12 | Consulente + direzione | 15-20 gg |
 | 4 | Budget previsionale | Banca d'Italia, Tavola Valdese | da produrre (2 versioni distinte) | entro 31/12 | Consulente | 3-5 gg cad. |

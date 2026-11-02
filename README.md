@@ -55,7 +55,7 @@ Ogni anello produce tre livelli: un cruscotto da leggere in trenta secondi, il d
 - **Nessun bando vinto.** La chain non è ancora stata validata da un esito.
 - **L'anello 3.5 non è mai stato provato su una piattaforma vera.** È l'unico scritto e non testato.
 - **Le ore di effort nel case study sono stime**, non misurazioni cronometrate.
-- **B-HOP è l'associazione dell'autrice.** Questo dà accesso a documenti e bilanci reali; va saputo.
+- **L'autrice collabora con B-HOP e fa parte del suo direttivo.** Non è un cliente terzo: il rapporto dà accesso a documenti e bilanci reali che un caso esterno non avrebbe; va saputo.
 - `scouting-bandi-cliente/` impacchetta come skill i **primi due anelli** (grounding + matching). Gli altri cinque girano in conversazione.
 
 ---
