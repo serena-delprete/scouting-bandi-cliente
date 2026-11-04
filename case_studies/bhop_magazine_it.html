@@ -629,6 +629,99 @@
         </tr>
       </tbody>
     </table>
+    <!-- GANTT BANDI -->
+    <h3 style="margin-top:48px;">Calendario bandi &mdash; vista temporale</h3>
+    <p>Il P1 produce un calendario predittivo che mostra quando ogni bando si apre e si chiude. Questa vista permette al consulente di pianificare le candidature senza sovrapposizioni e di capire dove concentrare l'effort.</p>
+
+    <div style="overflow-x:auto; margin:24px 0 0;">
+      <div style="position:relative; min-width:600px;">
+        <!-- Header mesi -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; margin-bottom:8px;">
+          <div style="font-size:12px; color:var(--text-dim);"></div>
+          <div style="font-size:12px; color:var(--text-dim); text-align:center; border-left:1px solid var(--border); padding:4px 0;">Ott 26</div>
+          <div style="font-size:12px; color:var(--text-dim); text-align:center; border-left:1px solid var(--border); padding:4px 0;">Nov 26</div>
+          <div style="font-size:12px; color:var(--text-dim); text-align:center; border-left:1px solid var(--border); padding:4px 0;">Dic 26</div>
+          <div style="font-size:12px; color:var(--text-dim); text-align:center; border-left:1px solid var(--border); padding:4px 0;">Gen 27</div>
+          <div style="font-size:12px; color:var(--text-dim); text-align:center; border-left:1px solid var(--border); padding:4px 0;">Feb 27</div>
+          <div style="font-size:12px; color:var(--text-dim); text-align:center; border-left:1px solid var(--border); padding:4px 0;">Mar 27</div>
+        </div>
+
+        <!-- Bando rows -->
+        <!-- UCSI Natale: scadenza 31 ott -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-muted); padding-right:12px;">UCSI Natale XXXII</div>
+          <div style="position:relative;">
+            <div style="background:var(--green); height:20px; border-radius:10px; width:90%; opacity:0.85;"></div>
+          </div>
+          <div></div><div></div><div></div><div></div><div></div>
+        </div>
+
+        <!-- Landolfo XV: scadenza 30 ott -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-muted); padding-right:12px;">Landolfo XV</div>
+          <div style="position:relative;">
+            <div style="background:var(--accent); height:20px; border-radius:10px; width:85%; opacity:0.85;"></div>
+          </div>
+          <div></div><div></div><div></div><div></div><div></div>
+        </div>
+
+        <!-- Tavola Valdese: finestra gen 2027 -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-muted); padding-right:12px;">Tavola Valdese OPM</div>
+          <div></div><div></div><div></div>
+          <div style="position:relative;">
+            <div style="background:var(--green); height:20px; border-radius:10px; width:90%; opacity:0.85;"></div>
+          </div>
+          <div></div><div></div>
+        </div>
+
+        <!-- Banca d'Italia: scadenza feb 2027 -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-muted); padding-right:12px;">Banca d'Italia 2027</div>
+          <div></div><div></div>
+          <div style="position:relative; grid-column: span 2;">
+            <div style="background:var(--accent); height:20px; border-radius:10px; width:95%; opacity:0.85;"></div>
+          </div>
+          <div></div><div></div>
+        </div>
+
+        <!-- CERV-VALUES: feb 2027 — bloccato -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-dim); padding-right:12px; text-decoration:line-through;">CERV-VALUES</div>
+          <div></div><div></div><div></div><div></div>
+          <div style="position:relative;">
+            <div style="background:var(--red); height:20px; border-radius:10px; width:90%; opacity:0.4;"></div>
+          </div>
+          <div></div>
+        </div>
+
+        <!-- CERV-REM: feb 2027 — bloccato -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-dim); padding-right:12px; text-decoration:line-through;">CERV-REM</div>
+          <div></div><div></div><div></div><div></div>
+          <div style="position:relative;">
+            <div style="background:var(--red); height:20px; border-radius:10px; width:90%; opacity:0.4;"></div>
+          </div>
+          <div></div>
+        </div>
+
+        <!-- Creative Europe: ~feb 2027 — bloccato -->
+        <div style="display:grid; grid-template-columns: 160px repeat(6,1fr); gap:0; align-items:center; margin-bottom:6px;">
+          <div style="font-size:13px; color:var(--text-dim); padding-right:12px; text-decoration:line-through;">Creative Europe</div>
+          <div></div><div></div><div></div><div></div>
+          <div style="position:relative; grid-column: span 2;">
+            <div style="background:var(--red); height:20px; border-radius:10px; width:60%; opacity:0.4;"></div>
+          </div>
+        </div>
+
+        <!-- Legenda -->
+        <div style="display:flex; gap:24px; margin-top:16px; font-size:12px; color:var(--text-dim);">
+          <span><span style="display:inline-block; width:12px; height:12px; border-radius:6px; background:var(--green); vertical-align:middle; margin-right:4px;"></span> Fattibile</span>
+          <span><span style="display:inline-block; width:12px; height:12px; border-radius:6px; background:var(--accent); vertical-align:middle; margin-right:4px;"></span> Go con condizioni</span>
+          <span><span style="display:inline-block; width:12px; height:12px; border-radius:6px; background:var(--red); opacity:0.4; vertical-align:middle; margin-right:4px;"></span> Bloccato</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- GATEKEEPER -->
